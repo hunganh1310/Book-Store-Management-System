@@ -1,11 +1,13 @@
 package com.topcit.aims.aims.dto.request;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class ProductCreationRequest {
     private String title;
     private String category;
-    private java.math.BigDecimal price;
+    private BigDecimal price;
     private Integer quantity;
-    private java.time.LocalDateTime addDate;
+    private LocalDateTime addDate;
     private ProductTypeEnum productType;
 
     public enum ProductTypeEnum {
