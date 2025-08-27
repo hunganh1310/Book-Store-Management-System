@@ -3,6 +3,7 @@ package com.topcit.aims.aims.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.topcit.aims.aims.dto.request.CustomerCreationRequest;
@@ -13,12 +14,16 @@ import com.topcit.aims.aims.respository.CustomerRepository;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Customer createCustomer(CustomerCreationRequest request) {
         Customer customer = new Customer();
+        // Hash the password before storing it
+        String encodePassword = passwordEncoder.encode(request.getPasswordHash());
+        
         customer.setFullName(request.getFullName());
         customer.setEmail(request.getEmail());
-        customer.setPasswordHash(request.getPasswordHash());
+        customer.setPasswordHash(encodePassword);
         customer.setAddress(request.getAddress());
         customerRepository.save(customer);
         return customer;

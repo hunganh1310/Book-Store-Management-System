@@ -9,10 +9,13 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order {
     public Order() {
     }
@@ -22,10 +25,11 @@ public class Order {
     @Column(name = "OrderID", nullable = false)
     private Integer orderID;
 
-    @Column(name = "CustomerID", nullable = false)
-    private Integer customerID;
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", nullable = false)
+    private Customer customerID;
 
-    @Column(name = "OrderDate", nullable = false)
+    @Column(name = "OrderDate", nullable = false, columnDefinition = "DATETIME CURRENT_TIMESTAMP")
     private LocalDateTime orderDate;
 
     @Column(name = "TotalAmount", precision = 10, scale = 2)
@@ -47,6 +51,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status = Status.Pending;
 
+    @Lob
+    @Column(name = "ShippingAddress")
+    private String shippingAddress;
+
     public Status getStatus() {
         return status;
     }
@@ -54,9 +62,6 @@ public class Order {
     public void setStatus(Status status) {
         this.status = status;
     }
-
-    @Column(name = "ShippingAddress", columnDefinition = "TEXT")
-    private String shippingAddress;
 
     public Integer getOrderID() {
         return orderID;
@@ -66,11 +71,11 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public Integer getCustomerID() {
+    public Customer getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Integer customerID) {
+    public void setCustomerID(Customer customerID) {
         this.customerID = customerID;
     }
 
