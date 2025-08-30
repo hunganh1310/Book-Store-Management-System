@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.topcit.aims.aims.dto.response.CustomerSpendingDTO;
-import com.topcit.aims.aims.entity.Order;
+import com.topcit.aims.aims.entity.Orders;
 import com.topcit.aims.aims.service.OrderService;
 
 @RestController
@@ -17,7 +17,7 @@ public class OrderController {
 
 
     @GetMapping("/orders")
-    public List<Order> getAllOrders() {
+    public List<Orders> getAllOrders() {
         return orderService.getAllOrders();
     }
 

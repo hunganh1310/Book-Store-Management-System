@@ -16,8 +16,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Orders")
-public class Order {
-    public Order() {
+public class Orders {
+    public Orders() {
     }
 
     @Id

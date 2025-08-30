@@ -6,6 +6,10 @@ public class CustomerSpendingDTO {
     private String customerName;
     private BigDecimal totalSpending;
     
+    public CustomerSpendingDTO(String customerName, BigDecimal totalSpending) {
+        this.customerName = customerName;
+        this.totalSpending = totalSpending;
+    }
     public String getCustomerName() {
         return customerName;
     }
