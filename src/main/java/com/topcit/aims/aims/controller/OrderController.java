@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.topcit.aims.aims.dto.response.CustomerSpendingDTO;
 import com.topcit.aims.aims.entity.Order;
 import com.topcit.aims.aims.service.OrderService;
 
@@ -22,8 +21,8 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @GetMapping("/orders/{id}")
-    public Order getOrderById(@RequestBody int id) {
-        return orderService.getOrderById(id);
+    @GetMapping("/customer-spending")
+    public List<CustomerSpendingDTO> getCustomerSpending() {
+        return orderService.getCustomerSpending();
     }
 }

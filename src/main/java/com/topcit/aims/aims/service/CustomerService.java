@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.topcit.aims.aims.dto.request.CustomerCreationRequest;
+import com.topcit.aims.aims.dto.request.CustomerUpdateRequest;
 import com.topcit.aims.aims.entity.Customer;
 import com.topcit.aims.aims.respository.CustomerRepository;
 
@@ -34,6 +35,17 @@ public class CustomerService {
     }
 
     public Customer getCustomerById(Integer id) {
-        return customerRepository.findById(id).orElse(null);
+        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
+    }
+
+    public Customer updateCustomer(Integer id, CustomerUpdateRequest request) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
+        
+        customer.setFullName(request.getFullName());
+        customer.setEmail(request.getEmail());
+        customer.setAddress(request.getAddress());
+        
+        customerRepository.save(customer);
+        return customer;
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.topcit.aims.aims.dto.response.CustomerSpendingDTO;
 import com.topcit.aims.aims.entity.Order;
 import com.topcit.aims.aims.respository.OrderRepository;
 
@@ -17,7 +18,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order getOrderById(Integer id) {
-        return orderRepository.findById(id).orElse(null);
+    public List<CustomerSpendingDTO> getCustomerSpending() {
+        return orderRepository.getCustomerSpending();   
     }
 }

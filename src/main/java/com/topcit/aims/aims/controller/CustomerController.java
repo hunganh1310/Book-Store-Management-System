@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.topcit.aims.aims.dto.request.CustomerCreationRequest;
+import com.topcit.aims.aims.dto.request.CustomerUpdateRequest;
 import com.topcit.aims.aims.entity.Customer;
 import com.topcit.aims.aims.service.CustomerService;
 
@@ -28,7 +31,12 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}")
-    public Customer getCustomerById(@RequestBody int id) {
+    public Customer getCustomerById(@PathVariable int id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PutMapping("/customers/{id}")
+    public Customer updateCustomer(@PathVariable int id, @RequestBody CustomerUpdateRequest request) {
+        return customerService.updateCustomer(id, request);
     }
 }

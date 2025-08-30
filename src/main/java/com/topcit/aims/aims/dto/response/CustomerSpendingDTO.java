@@ -2,7 +2,7 @@ package com.topcit.aims.aims.dto.response;
 
 import java.math.BigDecimal;
 
-public class CustomerSpedingDTO {
+public class CustomerSpendingDTO {
     private String customerName;
     private BigDecimal totalSpending;
     
