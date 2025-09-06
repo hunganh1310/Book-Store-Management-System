@@ -38,6 +38,11 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 
+    public void deleteCustomer(Integer id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
+        customerRepository.delete(customer);
+    }
+
     public Customer updateCustomer(Integer id, CustomerUpdateRequest request) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
         
